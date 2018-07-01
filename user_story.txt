@@ -8,7 +8,7 @@ Objects
 > Ship
 
 Methods
->
+> setSail
 
 Properties
 > startingPort
