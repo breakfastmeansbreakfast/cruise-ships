@@ -23,16 +23,19 @@ describe('Ship', () => {
     const itinerary = new Itinerary([poopyville, fartington]);
     const ship = new Ship(itinerary);
     ship.setSail();
-    expect(ship.currentPort).toBeFalsy();
+    expect(poopyville.ships).not.toContain(ship);
   });
-  it('can dock', () => {
+  it('can dock at another port', () => {
     const poopyville = new Port('Poopyville');
     const excrementville = new Port('Excrementville');
     const itinerary = new Itinerary([poopyville, excrementville]);
     const ship = new Ship(itinerary);
+
     ship.setSail();
     ship.dock();
+
     expect(ship.currentPort).toBe(excrementville);
+    expect(excrementville.ships).toContain(ship);
   });
   it('can\'t sail further than its itinerary', () => {
     const poopyville = new Port('Poopyville');
@@ -44,5 +47,31 @@ describe('Ship', () => {
     ship.dock();
 
     expect(() => ship.setSail()).toThrowError('End of itinerary reached');
+  });
+  it('can add a ship', () => {
+    const port = new Port('Brownton');
+    const ship = {};
+
+    port.addShip(ship);
+
+    expect(port.ships).toContain(ship);
+  });
+  it('can remove a ship', () => {
+    const port = new Port('Log');
+    const titanic = {};
+    const mary = {};
+
+    port.addShip(titanic);
+    port.addShip(mary);
+    port.removeShip(mary);
+
+    expect(port.ships).toEqual([titanic]);
+  });
+  it('gets added to the port on instantiation', () => {
+    const poopyville = new Port('Poopyville');
+    const itinerary = new Itinerary([poopyville]);
+    const ship = new Ship(itinerary);
+
+    expect(poopyville.ships).toContain(ship);
   });
 });

@@ -4,12 +4,14 @@ I want a ship to have a starting port."
 
 Domain model:
 
-Objects
-> Ship
+|Object		|Method		|Properties
+Ship		setSail		itinerary
+		dock		currentPort
+				previousPort
+				currentPortIndex(setSail)
 
-Methods
-> setSail
+Port		addShip		name
+		removeShip	ships
 
-Properties
-> startingPort
+Itinerary			ports
 
