@@ -1,4 +1,4 @@
-function Port (name) {
+function Port(name) {
   this.name = name;
 }
 
